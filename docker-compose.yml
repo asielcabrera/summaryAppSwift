@@ -14,7 +14,7 @@
 # Run migrations: docker-compose run migrate
 #       Stop all: docker-compose down (add -v to wipe db)
 #
-version: '3.7'
+version: '3.2'
 
 volumes:
   db_data:
@@ -50,25 +50,25 @@ services:
     command: ["migrate", "--yes"]
     deploy:
       replicas: 0
-  revert:
-    image: summary-app:latest
-    build:
-      context: .
-    environment:
-      <<: *shared_environment
-    depends_on:
-      - db
-    command: ["migrate", "--revert", "--yes"]
-    deploy:
-      replicas: 0
-  db:
-    image: mysql:8.0
-    volumes:
-      - db_data:/var/lib/mysql
-    environment:
-      MYSQL_USER: vapor_username
-      MYSQL_PASSWORD: vapor_password
-      MYSQL_DATABASE: vapor_database
-      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
-    ports:
-      - '3306:3306'
+#   revert:
+#     image: summary-app:latest
+#     build:
+#       context: .
+#     environment:
+#       <<: *shared_environment
+#     depends_on:
+#       - db
+#     command: ["migrate", "--revert", "--yes"]
+#     deploy:
+#       replicas: 0
+#   db:
+#     image: mysql:8.0
+#     volumes:
+#       - db_data:/var/lib/mysql
+#     environment:
+#       MYSQL_USER: vapor_username
+#       MYSQL_PASSWORD: vapor_password
+#       MYSQL_DATABASE: vapor_database
+#       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+#     ports:
+#       - '3306:3306'

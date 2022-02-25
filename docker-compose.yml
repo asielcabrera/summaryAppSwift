@@ -14,7 +14,7 @@
 # Run migrations: docker-compose run migrate
 #       Stop all: docker-compose down (add -v to wipe db)
 #
-version: '3.2'
+version: '2.7'
 
 volumes:
   db_data:
